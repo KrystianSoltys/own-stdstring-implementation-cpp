@@ -3,12 +3,15 @@
 
 auto main() -> int
 {
-	auto txt = "works amlost perfectly..";
+	auto txt = "works almo";
+	auto txt2 = "st perfectly..";
 	xString a(txt);
-	xString b(a);
 
-	std::cout << a << "\n" << &a << "\n" << a.size() << "\n\n";
-	std::cout << b << "\n" << &b << "\n" << b.size() << "\n\n";
+	std::cout << a << "\n" << &a.m_string << "\n" << a.size() << "\n\n";
+
+	a += txt2;
+
+	std::cout << a << "\n" << &a.m_string << "\n" << a.size() << "\n\n";
 
 	return 0;
 }

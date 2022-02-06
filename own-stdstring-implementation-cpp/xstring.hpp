@@ -1,8 +1,17 @@
 #ifndef XSTRING_HPP
 #define XSTRING_HPP
 
-#include <ostream>
+#include <iostream>
 #include <exception>
+#include <initializer_list>
+#include <vector>
+#include <algorithm>
+
+using uint = std::uint64_t;
+using ilChar = std::initializer_list<const char*>;
+using pairCharInt = std::pair<char*, uint>;
+
+
 
 class xString;
 
@@ -12,8 +21,7 @@ std::ostream& operator<< (std::ostream&, const xString&);
 class xString
 {
 private:
-	std::pair<char*, std::uint64_t> 
-		alloc(const char* ptr, std::uint64_t sz = 0) const;
+	pairCharInt alloc(std::vector<const char*>, std::vector<uint> = {}) const;
 
 public:
 	xString();
@@ -27,11 +35,13 @@ public:
 	virtual ~xString();
 
 	friend std::ostream& operator<< (std::ostream&, const xString&);
-	std::uint64_t size() const noexcept;
+	uint size() const noexcept;
 
-private:
+	xString& operator+=(const xString& obj);
+
+//private:
 	char* m_string {nullptr};
-	std::uint64_t m_size {0};
+	uint m_size {0};
 
 	
 };
